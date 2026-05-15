@@ -1,0 +1,27 @@
+.conditions { background: var(--dark); }
+.conditions__grid { display: grid; grid-template-columns: repeat(3,1fr); }
+.condition__item { display: flex; flex-direction: column; gap: 4px; padding: 28px 24px; border-right: 1px solid rgba(255,255,255,0.07); text-align: center; }
+.condition__item:last-child { border-right: none; }
+.condition__item span { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
+.condition__item strong { font-size: 1.15rem; font-weight: 800; color: var(--gold-light); }
+
+.terrains-filters { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; margin-bottom: 36px; padding: 20px 24px; background: var(--white); border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); }
+.filter-group { display: flex; align-items: center; gap: 12px; }
+.filter-group label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--dark-gray); white-space: nowrap; }
+.filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { padding: 6px 14px; border-radius: 100px; border: 2px solid var(--light-gray); background: transparent; font-size: 0.82rem; font-weight: 500; color: var(--dark-gray); cursor: pointer; transition: var(--transition); font-family: var(--font); }
+.chip:hover { border-color: var(--green); color: var(--green); }
+.chip--on { background: var(--green); border-color: var(--green); color: var(--white); font-weight: 600; }
+.filter-count { margin-left: auto; font-size: 0.88rem; color: var(--mid-gray); }
+.filter-count strong { color: var(--green); font-weight: 800; }
+
+.terrains-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.terrains-empty { text-align: center; padding: 80px 20px; color: var(--mid-gray); display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+.terrains-cta { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.terrains-cta h2 { font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+.terrains-cta p { font-size: 0.9rem; color: var(--mid-gray); }
+
+@media (max-width: 1100px) { .terrains-grid { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 800px) { .terrains-grid { grid-template-columns: repeat(2,1fr); } .conditions__grid { grid-template-columns: 1fr; } .condition__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); } .terrains-filters { flex-direction: column; align-items: flex-start; gap: 16px; } .filter-count { margin-left: 0; } }
+@media (max-width: 500px) { .terrains-grid { grid-template-columns: 1fr; } .terrains-cta { flex-direction: column; align-items: flex-start; } }
