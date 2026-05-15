@@ -5,10 +5,10 @@ import './Terrains.css';
 
 const Arrow = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>);
 
-const B  = '/WhatsApp Image 2026-05-14 at 12.52.02.jpeg';
-const Y  = '/WhatsApp Image 2026-05-14 at 12.52.02 (1).jpeg';
-const BN = '/WhatsApp Image 2026-05-14 at 12.52.03.jpeg';
-const F  = '/WhatsApp Image 2026-05-14 at 12.50.42.jpeg';
+const B  = '/terrain-bassam.jpeg';
+const Y  = '/terrain-yamoussoukro.jpeg';
+const BN = '/terrain-bonoua.jpeg';
+const F  = '/flyer-lca.jpeg';
 
 const ALL = [
   { id:1,  name:'Parcelle Résidentielle A1',  city:'Sikensi',      area:400, price:5000000,  badge:'Disponible',     image: F  },

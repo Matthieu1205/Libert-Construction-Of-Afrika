@@ -1,6 +1,6 @@
 /* HERO */
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding-top: 72px; overflow: hidden; }
-.hero__bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,51,23,0.92) 0%, rgba(28,89,41,0.85) 55%, rgba(42,122,58,0.88) 100%), url('/WhatsApp Image 2026-05-14 at 12.50.42.jpeg') center/cover no-repeat; }
+.hero__bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15,51,23,0.92) 0%, rgba(28,89,41,0.85) 55%, rgba(42,122,58,0.88) 100%), url('/flyer-lca.jpeg') center/cover no-repeat; }
 .hero__bg::after { content: ''; position: absolute; width: 500px; height: 500px; right: -100px; top: -100px; background: radial-gradient(circle, rgba(212,146,10,0.15) 0%, transparent 70%); border-radius: 50%; }
 .hero__content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 400px; gap: 64px; align-items: center; padding-top: 60px; padding-bottom: 80px; }
 .hero__text { color: var(--white); }

@@ -9,10 +9,10 @@ const STATS = [
   { value: '10 ans', label: "D'expérience"        },
 ];
 
-const IMG_BASSAM  = '/WhatsApp Image 2026-05-14 at 12.52.02.jpeg';
-const IMG_YAMOUS  = '/WhatsApp Image 2026-05-14 at 12.52.02 (1).jpeg';
-const IMG_BONOUA  = '/WhatsApp Image 2026-05-14 at 12.52.03.jpeg';
-const IMG_FLYER   = '/WhatsApp Image 2026-05-14 at 12.50.42.jpeg';
+const IMG_BASSAM  = '/terrain-bassam.jpeg';
+const IMG_YAMOUS  = '/terrain-yamoussoukro.jpeg';
+const IMG_BONOUA  = '/terrain-bonoua.jpeg';
+const IMG_FLYER   = '/flyer-lca.jpeg';
 
 const PROPERTIES = [
   { id: 1, name: 'Parcelle Résidentielle', city: 'Sikensi',      area: 400, price: 5000000,  badge: 'Populaire',      image: IMG_FLYER   },
