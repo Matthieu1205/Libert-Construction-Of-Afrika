@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useData } from '../contexts/DataContext';
 import './About.css';
 
 const Arrow = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>);
 const Check = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20,6 9,17 4,12"/></svg>);
 
-const VALEURS = [
-  { title:'Confiance',  desc:"Nous bâtissons des relations durables fondées sur la transparence et l'honnêteté." },
-  { title:'Efficacité', desc:'Des procédures rapides et claires pour que vous obteniez votre terrain sans délai.' },
-  { title:'Proximité',  desc:'Une équipe à votre écoute, présente sur le terrain pour vous accompagner.' },
-  { title:'Excellence', desc:'Nous visons la qualité dans chaque transaction et chaque service proposé.' },
-];
-
-const SERVICES = ['Vente de terrains résidentiels','Construction de bâtiments','Transport de matériaux','Entretien de bureaux','Import / Export','Conseil en investissement immobilier'];
-
 export default function About() {
+  const { data } = useData();
+  const { valeurs, services_about, mission, vision, story_stats } = data;
+
   return (
     <main>
       <section className="page-hero">
@@ -29,11 +24,11 @@ export default function About() {
         <div className="container about-mv">
           <div className="mv-card mv-card--green">
             <h3>Notre Mission</h3>
-            <p>Rendre l'accès à la propriété foncière possible pour chaque Ivoirien, quelle que soit sa situation financière, grâce à des solutions de paiement flexibles et des terrains sécurisés.</p>
+            <p>{mission}</p>
           </div>
           <div className="mv-card mv-card--light">
             <h3>Notre Vision</h3>
-            <p>Devenir le leader de l'immobilier abordable en Côte d'Ivoire en accompagnant des milliers de familles dans l'acquisition de leur espace de vie et la réalisation de leur avenir.</p>
+            <p>{vision}</p>
           </div>
         </div>
       </section>
@@ -47,7 +42,7 @@ export default function About() {
             <p>Liberté Construction Of Afrika est née de la volonté de ses fondateurs de démocratiser l'accès à la propriété en Côte d'Ivoire. Face aux difficultés que rencontrent de nombreuses familles, l'entreprise a développé des solutions innovantes et accessibles.</p>
             <p>Aujourd'hui, avec plus de 1 500 clients satisfaits et des terrains disponibles dans quatre villes stratégiques, nous continuons de grandir pour mieux vous servir.</p>
             <ul className="about-story__list">
-              {['Plus de 500 terrains vendus','Présence dans 4 villes','1 500+ clients satisfaits','Titres fonciers sécurisés'].map((item,i)=>(
+              {story_stats.map((item, i) => (
                 <li key={i}><span className="why__check"><Check /></span>{item}</li>
               ))}
             </ul>
@@ -67,7 +62,7 @@ export default function About() {
             <h2 className="section-title">Nos <span>valeurs</span></h2>
           </div>
           <div className="values__grid">
-            {VALEURS.map((v,i)=>(
+            {valeurs.map((v, i) => (
               <div className="value__card" key={i}>
                 <h3>{v.title}</h3>
                 <p>{v.desc}</p>
@@ -85,7 +80,7 @@ export default function About() {
             <h2 className="section-title">Nos <span>services</span></h2>
             <p style={{color:'var(--dark-gray)',marginTop:12,lineHeight:1.7,maxWidth:480}}>Au-delà de la vente de terrains, Liberté Construction Of Afrika offre un éventail de services pour accompagner tous vos projets.</p>
             <ul className="services__list">
-              {SERVICES.map((s,i)=>(
+              {services_about.map((s, i) => (
                 <li key={i}><span className="why__check"><Check /></span>{s}</li>
               ))}
             </ul>
