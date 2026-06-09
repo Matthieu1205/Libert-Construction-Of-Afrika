@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { useData } from '../contexts/DataContext';
 import './Construction.css';
 
@@ -12,13 +13,47 @@ export default function Construction() {
 
   return (
     <main>
-      <section className="page-hero">
-        <div className="container">
-          <span className="tag">BTP</span>
-          <h1 style={{marginTop:12}}>Services de <span>Construction</span></h1>
-          <p>De l'idée au bâtiment — nous concrétisons vos projets de construction en Côte d'Ivoire.</p>
+      <SEO
+        title="Construction de Maison et Villa en Côte d'Ivoire"
+        description="Construction de maisons, villas, duplex et bâtiments commerciaux en Côte d'Ivoire. Clé en main, devis gratuit. Plus de 10 ans d'expérience en BTP."
+        path="/construction"
+        image="https://www.liberte-construction.com/construction.jpeg"
+      />
+      <div className="hero-const">
+        <div className="hero-const__content">
+          <span className="hero-const__badge">BTP — Bâtiment &amp; Travaux Publics</span>
+          <h1 className="hero-const__title">Services de <span className="hero-const__accent">Construction</span></h1>
+          <p className="hero-const__subtitle">
+            De l'idée au bâtiment — nous concrétisons vos projets<br />
+            de construction en Côte d'Ivoire.
+          </p>
+          <div className="hero-const__stats">
+            <div className="hero-const__stat">
+              <strong>10 ans</strong>
+              <span>D'expérience</span>
+            </div>
+            <div className="hero-const__stat-divider" />
+            <div className="hero-const__stat">
+              <strong>1 500+</strong>
+              <span>Clients satisfaits</span>
+            </div>
+            <div className="hero-const__stat-divider" />
+            <div className="hero-const__stat">
+              <strong>100%</strong>
+              <span>Clé en main</span>
+            </div>
+          </div>
+          <div className="hero-const__tags">
+            {["Maisons individuelles", "Duplex & Villas", "Bâtiments commerciaux", "Rénovation"].map((s) => (
+              <span key={s} className="hero-const__tag">{s}</span>
+            ))}
+          </div>
+          <div className="hero-const__actions">
+            <Link to="/contact" className="btn btn-gold btn-lg">Demander un devis <Arrow /></Link>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn hero-const__btn-outline btn-lg">WhatsApp</a>
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* Services */}
       <section style={{padding:'80px 0'}}>

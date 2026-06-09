@@ -32,15 +32,23 @@ const Area = () => (
 );
 
 export default function PropertyCard({ property }) {
-  const { name, city, area, price, image, badge, documentType } = property;
+  const { name, city, zone, area, price, image, badge, documentType, documents } = property;
 
   const fmt = (p) => new Intl.NumberFormat("fr-FR").format(p) + " FCFA";
+
+  const docs = documents || (documentType ? [documentType] : []);
+
+  const docClass = (doc) => {
+    if (doc === "TF")          return "pcard__doc--tf";
+    if (doc === "ACD")         return "pcard__doc--acd";
+    return "pcard__doc--approbation";
+  };
 
   return (
     <div className="pcard">
       <div className="pcard__img-wrap">
         {image ? (
-          <img src={image} alt={name} className="pcard__img" />
+          <img src={image} alt={`${name} ${area} m² à ${city} — ${docs.join(", ")}`} className="pcard__img" loading="lazy" />
         ) : (
           <div className="pcard__img-placeholder">
             <svg
@@ -59,15 +67,12 @@ export default function PropertyCard({ property }) {
 
         {badge && <span className="pcard__badge">{badge}</span>}
 
-        {/* Type de document */}
-        {documentType && (
-          <span
-            className={`pcard__doc ${
-              documentType === "TF" ? "pcard__doc--tf" : "pcard__doc--acd"
-            }`}
-          >
-            {documentType}
-          </span>
+        {docs.length > 0 && (
+          <div className="pcard__docs">
+            {docs.map((doc) => (
+              <span key={doc} className={`pcard__doc ${docClass(doc)}`}>{doc}</span>
+            ))}
+          </div>
         )}
       </div>
 
@@ -81,6 +86,8 @@ export default function PropertyCard({ property }) {
             <Area /> {area} m²
           </span>
         </div>
+
+        {zone && <span className="pcard__zone">{zone}</span>}
 
         <h3 className="pcard__title">{name}</h3>
 

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { useData } from '../contexts/DataContext';
 import './About.css';
 
@@ -11,6 +12,11 @@ export default function About() {
 
   return (
     <main>
+      <SEO
+        title="À Propos"
+        description="Découvrez Liberté Construction Of Afrika, spécialiste de l'immobilier et du BTP en Côte d'Ivoire depuis plus de 10 ans. Plus de 1 500 clients satisfaits."
+        path="/a-propos"
+      />
       <section className="page-hero">
         <div className="container">
           <span className="tag">Notre histoire</span>

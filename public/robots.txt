@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Bloquer le backoffice
+Disallow: /admin
+
+Sitemap: https://www.liberte-construction.com/sitemap.xml

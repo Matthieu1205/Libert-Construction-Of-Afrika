@@ -1,7 +1,24 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import PropertyCard from '../components/PropertyCard';
+import SEO from '../components/SEO';
 import { useData } from '../contexts/DataContext';
 import './Home.css';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Liberté Construction Of Afrika",
+  "description": "Vente de terrains et services de construction en Côte d'Ivoire.",
+  "url": "https://www.liberte-construction.com",
+  "logo": "https://www.liberte-construction.com/logo.jpeg",
+  "image": "https://www.liberte-construction.com/flyer-lca.jpeg",
+  "address": { "@type": "PostalAddress", "addressCountry": "CI", "addressRegion": "Abidjan" },
+  "areaServed": ["Vitré 1", "Sikensi", "Yamoussoukro", "Bonoua"],
+  "priceRange": "4 000 000 FCFA – 20 000 000 FCFA",
+  "telephone": "+2250710891040",
+  "sameAs": []
+};
 
 const Arrow  = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>);
 const Check  = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20,6 9,17 4,12"/></svg>);
@@ -18,6 +35,13 @@ export default function Home() {
 
   return (
     <main className="home">
+      <SEO
+        description="Achetez votre terrain en Côte d'Ivoire. Parcelles sécurisées à Vitré 1, Sikensi, Yamoussoukro, Bonoua. Titres fonciers, paiement flexible dès 3 000 000 FCFA."
+        path="/"
+      />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
 
       {/* HERO */}
       <section className="hero">

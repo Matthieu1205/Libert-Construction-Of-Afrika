@@ -1,23 +1,15 @@
 import { createContext, useContext, useState } from 'react';
+import { useData } from './DataContext';
 
 const AuthContext = createContext(null);
 
-function getStoredPassword() {
-  try {
-    const stored = localStorage.getItem('lca_data');
-    if (stored) {
-      const data = JSON.parse(stored);
-      return data?.settings?.admin_password || 'lca2024';
-    }
-  } catch {}
-  return 'lca2024';
-}
-
 export function AuthProvider({ children }) {
+  const { data } = useData();
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('lca_admin') === '1');
 
   const login = (password) => {
-    if (password === getStoredPassword()) {
+    const adminPassword = data?.settings?.admin_password || 'lca2024';
+    if (password === adminPassword) {
       sessionStorage.setItem('lca_admin', '1');
       setAuthed(true);
       return true;

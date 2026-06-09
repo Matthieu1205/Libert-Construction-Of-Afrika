@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 import { useData } from '../contexts/DataContext';
 import './Contact.css';
 
@@ -32,6 +33,11 @@ export default function Contact() {
 
   return (
     <main>
+      <SEO
+        title="Contactez-Nous"
+        description="Contactez Liberté Construction Of Afrika pour acheter un terrain ou démarrer votre projet de construction en Côte d'Ivoire. Réponse rapide par WhatsApp ou email."
+        path="/contact"
+      />
       <section className="page-hero">
         <div className="container">
           <span className="tag">Parlons-nous</span>

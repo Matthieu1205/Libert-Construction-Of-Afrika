@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useData } from '../../contexts/DataContext';
 
-const CITIES  = ['Sikensi', 'Grand-Bassam', 'Yamoussoukro', 'Bonoua'];
-const AREAS   = [400, 500, 600];
+const CITIES  = ['Vitré 1', 'Sikensi', 'Yamoussoukro', 'Bonoua'];
+const AREAS   = [300, 400, 500, 600];
 const BADGES  = ['', 'Disponible', 'Populaire', 'Offre spéciale'];
-const EMPTY   = { name:'', city:'Sikensi', area:400, price:5000000, badge:'', image:'', featured:false };
+const DOCS    = ['TF', 'ACD', 'Approbation'];
+const EMPTY   = { name:'', city:'Vitré 1', zone:'', area:400, price:5000000, badge:'', image:'', featured:false, documents:[] };
 
 function badgeClass(badge) {
   if (!badge)                   return 'admin-badge admin-badge--gray';
@@ -29,6 +30,13 @@ export default function AdminTerrains() {
     }));
   };
 
+  const toggleDoc = (doc) => {
+    setForm(prev => {
+      const docs = prev.documents || [];
+      return { ...prev, documents: docs.includes(doc) ? docs.filter(d => d !== doc) : [...docs, doc] };
+    });
+  };
+
   const save = () => {
     if (!form.name.trim()) { setError('Le nom est obligatoire.'); return; }
     if (!form.image.trim()) { setError("L'URL de l'image est obligatoire."); return; }
@@ -51,7 +59,7 @@ export default function AdminTerrains() {
     <div className="admin-page">
       <div className="admin-page-header">
         <h2>Terrains <span className="admin-page-sub">({terrains.length} au total)</span></h2>
-        <button className="admin-btn admin-btn--primary" onClick={() => { setForm(EMPTY); setError(''); }}>
+        <button className="admin-btn admin-btn--primary" onClick={() => { setForm({...EMPTY}); setError(''); }}>
           + Ajouter un terrain
         </button>
       </div>
@@ -63,8 +71,10 @@ export default function AdminTerrains() {
               <th>Image</th>
               <th>Nom</th>
               <th>Ville</th>
+              <th>Zone</th>
               <th>Surface</th>
               <th>Prix (FCFA)</th>
+              <th>Documents</th>
               <th>Badge</th>
               <th>Accueil</th>
               <th>Actions</th>
@@ -81,8 +91,12 @@ export default function AdminTerrains() {
                 </td>
                 <td style={{fontWeight:500}}>{t.name}</td>
                 <td>{t.city}</td>
+                <td style={{fontSize:12,color:'#555'}}>{t.zone || '—'}</td>
                 <td>{t.area} m²</td>
                 <td>{t.price.toLocaleString('fr-FR')}</td>
+                <td style={{fontSize:12}}>
+                  {(t.documents || (t.documentType ? [t.documentType] : [])).join(', ') || '—'}
+                </td>
                 <td>
                   {t.badge
                     ? <span className={badgeClass(t.badge)}>{t.badge}</span>
@@ -96,7 +110,7 @@ export default function AdminTerrains() {
                   }
                 </td>
                 <td className="admin-table-actions">
-                  <button className="admin-btn admin-btn--sm" onClick={() => { setForm({...t}); setError(''); }}>Modifier</button>
+                  <button className="admin-btn admin-btn--sm" onClick={() => { setForm({ ...t, documents: t.documents || (t.documentType ? [t.documentType] : []) }); setError(''); }}>Modifier</button>
                   <button className="admin-btn admin-btn--sm admin-btn--danger" onClick={() => setConfirm(t.id)}>Supprimer</button>
                 </td>
               </tr>
@@ -125,10 +139,27 @@ export default function AdminTerrains() {
                   </select>
                 </div>
                 <div className="admin-field">
+                  <label>Zone / Quartier</label>
+                  <input name="zone" value={form.zone || ''} onChange={change} placeholder="ex: Autoroutes du Nord" />
+                </div>
+              </div>
+              <div className="admin-form-row">
+                <div className="admin-field">
                   <label>Superficie *</label>
                   <select name="area" value={form.area} onChange={change}>
                     {AREAS.map(a => <option key={a} value={a}>{a} m²</option>)}
                   </select>
+                </div>
+                <div className="admin-field">
+                  <label>Documents</label>
+                  <div style={{display:'flex',gap:14,flexWrap:'wrap',paddingTop:6}}>
+                    {DOCS.map(doc => (
+                      <label key={doc} style={{display:'flex',alignItems:'center',gap:5,fontSize:13,cursor:'pointer'}}>
+                        <input type="checkbox" checked={(form.documents||[]).includes(doc)} onChange={()=>toggleDoc(doc)} />
+                        {doc}
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="admin-form-row">
